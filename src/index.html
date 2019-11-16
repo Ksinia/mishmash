@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="luke"></p>
+    <button id="darth" onclick="fetchDarthVader(); return false;">DARTH VADER</button>
+    <script>
+        fetch("https://swapi.co/api/people/1")
+            .then(response => response.json())
+            .then(myJson => {
+                document.getElementById("luke").innerHTML =
+                    "<pre>" + JSON.stringify(myJson, null, " ") + "</pre>"
+            })
+        function fetchDarthVader() {
+            fetch("https://swapi.co/api/people/4/")
+                .then(response => response.json())
+                .then(myJson => {
+                    const d = document.createElement("p")
+                    d.innerHTML = "<pre>" + JSON.stringify(myJson, null, " ") + "</pre>"
+                    document.body.appendChild(d)
+                })
+        }
+    </script>
+</body>
+
+</html>
